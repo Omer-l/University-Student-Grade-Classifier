@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class ProfileTest {
 
 	@Test
-	void testInitialiseProfileLessGrade() {
+	void testInitialiseProfileEmptyList() {
 		List<Grade> emptyListOfGrades = new ArrayList<>();
 		
 		assertThrows(IllegalArgumentException.class, () -> {

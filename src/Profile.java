@@ -27,7 +27,7 @@ public class Profile {
 	 * @return true if at least one grade is greater than or equal to 16 and less
 	 *         than or equal to 20.
 	 */
-	private static boolean fail(List<Grade> g) {
+	private boolean fail(List<Grade> g) {
 		for (Grade grade : g)
 			if (16 < grade.getPoints() && grade.getPoints() <= 20)
 				return true;
