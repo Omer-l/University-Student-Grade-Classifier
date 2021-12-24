@@ -1,2 +1,7 @@
-/tests/
-/main/
+/Classification.class
+/Degree.class
+/DegreeTest.class
+/Grade.class
+/GradeTest.class
+/Profile.class
+/ProfileTest.class
