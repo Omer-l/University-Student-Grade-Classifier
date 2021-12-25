@@ -29,10 +29,10 @@ public class Degree {
 	private boolean fail(List<Grade> year2, List<Grade> year3) {
 
 		for (int gradeNumber = 0; gradeNumber < year2.size(); gradeNumber++) {
-			int year2Grade = year2.get(gradeNumber).getPoints();
-			int year3Grade = year3.get(gradeNumber).getPoints();
+			Grade year2Grade = year2.get(gradeNumber);
+			Grade year3Grade = year3.get(gradeNumber);
 
-			if (16 < year2Grade && year2Grade <= 20 && 16 < year3Grade && year3Grade <= 20)
+			if (year2Grade.classify() == Classification.Fail || year3Grade.classify() == Classification.Fail)
 				return true;
 		}
 		return false;
@@ -49,7 +49,7 @@ public class Degree {
 			return classificationValues[level6Classification];
 		else if(level6Classification == level5Classification - 1) //level 5 is 1 higher
 			return classificationValues[level5Classification];
-		
-		return Classification.Third;
+		else
+			return Classification.Discretion; 
 	}
 }

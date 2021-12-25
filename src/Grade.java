@@ -20,6 +20,8 @@ public class Grade {
 	private final int thirdGradeLimit = 16;
 	
 	public Classification classify() {
+		int points = getPoints();
+		
 		if(points <= firstGradeLimit)
 			return Classification.First;
 		else if(points <= upperSecondGradeLimit)

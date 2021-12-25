@@ -29,7 +29,7 @@ public class Profile {
 	 */
 	private boolean fail(List<Grade> g) {
 		for (Grade grade : g)
-			if (16 < grade.getPoints() && grade.getPoints() <= 20)
+			if (grade.classify() == Classification.Fail)
 				return true;
 		return false;
 	}
