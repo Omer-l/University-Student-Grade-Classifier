@@ -126,7 +126,7 @@ class ProfileTest {
 		listOfGrades.add(new Grade(11)); //grade 3
 		listOfGrades.add(new Grade(12)); //grade 4
 		listOfGrades.add(new Grade(1)); //grade 5
-		listOfGrades.add(new Grade(3)); //grade 6
+		listOfGrades.add(new Grade(15)); //grade 6
 		listOfGrades.add(new Grade(4)); //grade 7
 		listOfGrades.add(new Grade(6)); //grade 8
 		
@@ -147,7 +147,7 @@ class ProfileTest {
 		listOfGrades.add(new Grade(12)); //grade 4
 		listOfGrades.add(new Grade(1)); //grade 5
 		listOfGrades.add(new Grade(3)); //grade 6
-		listOfGrades.add(new Grade(4)); //grade 7
+		listOfGrades.add(new Grade(14)); //grade 7
 		listOfGrades.add(new Grade(16)); //grade 8
 		
 		Profile profile = new Profile(listOfGrades);

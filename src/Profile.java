@@ -4,10 +4,10 @@ public class Profile {
 	// Your additions/changes below this line
 	private List<Grade> grades;
 	//percentages of each grade
-	private double percentageOfGradesFirst;
-	private double percentageOfGradesUpperSecond;
-	private double percentageOfGradesLowerSecond;
-	private double percentageOfGradesThird;
+	private double percentageOfGradesFirst; //not 'AndUp' because there is not a higher grade classification.
+	private double percentageOfGradesUpperSecondAndUp; //percentage of grades 1-8
+	private double percentageOfGradesLowerSecondAndUp; //percentage of grades 1-12
+	private double percentageOfGradesThird; //this is not 'AndUp' because it's only used for measuring the clearness of the profile.
 	private final double classifyingPercentage = 0.50;
 	private final double discretionPercentage = 0.251; //+ 0.001 for floating point error handling. 
 
@@ -16,7 +16,7 @@ public class Profile {
 			throw new IllegalArgumentException();
 		else {
 			this.grades = g;
-			initialiseProfileGradePercentages(); //get proportion/percentage of each grade
+			initialiseProfileGradePercentages(); //gets the proportion/percentage of each grade
 		}
 	}
 
@@ -29,7 +29,7 @@ public class Profile {
 	 */
 	private boolean fail(List<Grade> g) {
 		for (Grade grade : g)
-			if (grade.classify() == Classification.Fail)
+			if (grade.classify().equals(Classification.Fail))
 				return true;
 		return false;
 	}
@@ -56,8 +56,8 @@ public class Profile {
 		}
 		// calculate grade percentages overall
 		profilePercentages[0] = (double) gradeCounter[0] / (double) numberOfGradesInProfile; // percentage of first class
-		profilePercentages[1] = (double) gradeCounter[1] / (double) numberOfGradesInProfile; // percentage of upper second class
-		profilePercentages[2] = (double) gradeCounter[2] / (double) numberOfGradesInProfile; // percentage of lower second class
+		profilePercentages[1] = ((double) gradeCounter[1] / (double) numberOfGradesInProfile) + percentageOfGradesFirst; // percentage of upper second class and up
+		profilePercentages[2] = ((double) gradeCounter[2] / (double) numberOfGradesInProfile)  + percentageOfGradesUpperSecondAndUp + percentageOfGradesFirst; // percentage of lower second class
 		profilePercentages[3] = (double) gradeCounter[3] / (double) numberOfGradesInProfile; // percentage of third class
 
 		return profilePercentages;
@@ -68,8 +68,8 @@ public class Profile {
 		double[] percentagesProfile = getProfileGradePercentages();
 		// evaluates profile 6's grades' percentages as a decimal (i.e. 0.50)
 		this.percentageOfGradesFirst = percentagesProfile[0];
-		this.percentageOfGradesUpperSecond = percentagesProfile[1];
-		this.percentageOfGradesLowerSecond = percentagesProfile[2];
+		this.percentageOfGradesUpperSecondAndUp = percentagesProfile[1];
+		this.percentageOfGradesLowerSecondAndUp = percentagesProfile[2];
 		this.percentageOfGradesThird = percentagesProfile[3];
 	}
 
@@ -79,9 +79,9 @@ public class Profile {
 			return Classification.Discretion;
 		else if (percentageOfGradesFirst >= classifyingPercentage)
 			return Classification.First;
-		else if (percentageOfGradesUpperSecond >= classifyingPercentage)
+		else if (percentageOfGradesUpperSecondAndUp >= classifyingPercentage)
 			return Classification.UpperSecond;
-		else if (percentageOfGradesLowerSecond >= classifyingPercentage)
+		else if (percentageOfGradesLowerSecondAndUp >= classifyingPercentage)
 			return Classification.LowerSecond;
 		else
 			return Classification.Third;
@@ -90,7 +90,7 @@ public class Profile {
 	//Returns false for First or UpperSecond grades that have more than 25% Third grades.
 	public boolean isClear() {
 		if ((percentageOfGradesFirst >= classifyingPercentage && percentageOfGradesThird > discretionPercentage)
-				|| (percentageOfGradesUpperSecond >= classifyingPercentage
+				|| (percentageOfGradesUpperSecondAndUp >= classifyingPercentage
 						&& percentageOfGradesThird > discretionPercentage)) 
 			return false;
 		else

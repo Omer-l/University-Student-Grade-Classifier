@@ -32,7 +32,7 @@ public class Degree {
 			Grade year2Grade = year2.get(gradeNumber);
 			Grade year3Grade = year3.get(gradeNumber);
 
-			if (year2Grade.classify() == Classification.Fail || year3Grade.classify() == Classification.Fail)
+			if (year2Grade.classify().equals(Classification.Fail) || year3Grade.classify().equals(Classification.Fail))
 				return true;
 		}
 		return false;
@@ -45,9 +45,9 @@ public class Degree {
 		
 		if(level5Classification.equals(level6Classification))
 			return classificationValues[level5Classification];
-		else if(level5Classification == level6Classification - 1) //level 6 is 1 higher
+		else if(level5Classification.equals(level6Classification - 1)) //level 6 is 1 higher
 			return classificationValues[level6Classification];
-		else if(level6Classification == level5Classification - 1) //level 5 is 1 higher
+		else if(level6Classification.equals(level5Classification - 1)) //level 5 is 1 higher
 			return classificationValues[level5Classification];
 		else
 			return Classification.Discretion; 
