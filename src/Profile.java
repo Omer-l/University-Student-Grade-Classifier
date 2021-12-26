@@ -24,7 +24,7 @@ public class Profile {
 	 * Evaluates a list of grades for any grade 17-20.
 	 * 
 	 * @param g is the list of grades
-	 * @return true if at least one grade is greater than or equal to 16 and less
+	 * @return true if at least one grade is greater than 16 and less
 	 *         than or equal to 20.
 	 */
 	private static boolean fail(List<Grade> g) {
@@ -33,19 +33,9 @@ public class Profile {
 				return true;
 		return false;
 	}
-
-	//Initialises the percentages of each grade attained by this profile.
-	private void initialiseProfileGradePercentages() {
-		double[] percentagesProfile = getProfileGradePercentages();
-		// evaluates profile 6's grades' percentages as a decimal (i.e. 0.50)
-		this.percentageOfGradesFirst = percentagesProfile[0];
-		this.percentageOfGradesUpperSecondAndUp = percentagesProfile[1];
-		this.percentageOfGradesLowerSecondAndUp = percentagesProfile[2];
-		this.percentageOfGradesThird = percentagesProfile[3];
-	}
-
+	
 	// Gets profile 5 or 6 depending on the given number of grades in the parameter
-	private double[] getProfileGradePercentages() {
+	private void initialiseProfileGradePercentages() {
 		int[] gradeCounter = new int[4]; // for counting the occurence of each class
 		double[] profilePercentages = new double[4]; //percentage of each grade
 		int numberOfGradesInProfile = grades.size(); //how many grades? i.e. profile 5 has 8 grades.
@@ -65,12 +55,11 @@ public class Profile {
 				gradeCounter[3]++;
 		}
 		// calculate grade percentages overall
-		profilePercentages[0] = (double) gradeCounter[0] / (double) numberOfGradesInProfile; // percentage of first class
-		profilePercentages[1] = ((double) gradeCounter[1] / (double) numberOfGradesInProfile) + percentageOfGradesFirst; // percentage of upper second class and up
-		profilePercentages[2] = ((double) gradeCounter[2] / (double) numberOfGradesInProfile)  + percentageOfGradesUpperSecondAndUp + percentageOfGradesFirst; // percentage of lower second class
-		profilePercentages[3] = (double) gradeCounter[3] / (double) numberOfGradesInProfile; // percentage of third class
+		this.percentageOfGradesFirst = (double) gradeCounter[0] / (double) numberOfGradesInProfile; // percentage of first class
+		this.percentageOfGradesUpperSecondAndUp = ((double) gradeCounter[1] / (double) numberOfGradesInProfile) + percentageOfGradesFirst; // percentage of upper second class and up
+		this.percentageOfGradesLowerSecondAndUp = ((double) gradeCounter[2] / (double) numberOfGradesInProfile)  + percentageOfGradesUpperSecondAndUp; // percentage of lower second class
+		this.percentageOfGradesThird = (double) gradeCounter[3] / (double) numberOfGradesInProfile; // percentage of third class
 
-		return profilePercentages;
 	}
 
 	//Classify profile depending on percentage of grades achieved within a certain range. 50% of grades 1-4 is First, 1-8 UpperSecond. 1-12 LowerSecond.
