@@ -8,7 +8,7 @@ public class Degree {
 	private final Profile level6Profile;
 
 	public Degree(List<Grade> year2, List<Grade> year3) {
-		if (year2 == null || year3 == null || year2.size() != numberOfGradesYear2 || year3.size() != numberOfGradesYear3)
+		if (year2 == null || year3 == null || year2.size() != numberOfGradesYear2 || year3.size() != numberOfGradesYear3 || fail(year2, year3))
 			throw new IllegalArgumentException();
 		else {
 			year2.addAll(year3);
@@ -17,6 +17,26 @@ public class Degree {
 		}
 	}
 
+	
+	/**
+	 * Evaluates a list of grades for any grade 17-20.
+	 * 
+	 * @param year2 is the list of grades for year 2
+	 * @param year3 is the list of grades for year 3
+	 * @return true if at least one grade is greater than or equal to 16 and less
+	 *         than or equal to 20.
+	 */
+	private boolean fail(List<Grade> year2, List<Grade> year3) {
+
+		for (int gradeNumber = 0; gradeNumber < year2.size(); gradeNumber++) {
+			Grade year2Grade = year2.get(gradeNumber);
+			Grade year3Grade = year3.get(gradeNumber);
+
+			if (year2Grade.classify().equals(Classification.Fail) || year3Grade.classify().equals(Classification.Fail))
+				return true;
+		}
+		return false;
+	}
 	public Classification classify() {
 		Integer level5Classification = level5Profile.classify().ordinal();
 		Integer level6Classification = level6Profile.classify().ordinal();
