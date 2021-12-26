@@ -41,6 +41,10 @@ class DegreeTest {
 		});
 		
 		assertThrows(IllegalArgumentException.class, () -> {
+			year2Grades.add(new Grade(0)); //grade shouldn't be added
+		});
+		
+		assertThrows(IllegalArgumentException.class, () -> {
 			Degree Degree = new Degree(year2Grades, null);
 		});
 	}
