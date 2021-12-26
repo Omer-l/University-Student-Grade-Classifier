@@ -4,11 +4,11 @@ public class Profile {
 	// Your additions/changes below this line
 	private List<Grade> grades;
 	//percentages of each grade
-	private double percentageOfGradesFirst; //not 'AndUp' because there is not a higher grade classification.
+	private double percentageOfGradesFirst; //NOT 'AndUp' because there is not a higher grade classification.
 	private double percentageOfGradesUpperSecondAndUp; //percentage of grades 1-8
 	private double percentageOfGradesLowerSecondAndUp; //percentage of grades 1-12
-	private double percentageOfGradesThird; //this is not 'AndUp' because it's only used for measuring the clearness of the profile.
-	private final double classifyingPercentage = 0.50;
+	private double percentageOfGradesThird; //this is NOT 'AndUp' since it is only used for measuring the clearness of the profile.
+	private final double classifyingPercentage = 0.50; //the percentage required for the classification of a profile.
 	private final double discretionPercentage = 0.251; //+ 0.001 for floating point error handling. 
 
 	public Profile(List<Grade> g) {
@@ -27,11 +27,21 @@ public class Profile {
 	 * @return true if at least one grade is greater than or equal to 16 and less
 	 *         than or equal to 20.
 	 */
-	private boolean fail(List<Grade> g) {
+	private static boolean fail(List<Grade> g) {
 		for (Grade grade : g)
 			if (grade.classify().equals(Classification.Fail))
 				return true;
 		return false;
+	}
+
+	//Initialises the percentages of each grade attained by this profile.
+	private void initialiseProfileGradePercentages() {
+		double[] percentagesProfile = getProfileGradePercentages();
+		// evaluates profile 6's grades' percentages as a decimal (i.e. 0.50)
+		this.percentageOfGradesFirst = percentagesProfile[0];
+		this.percentageOfGradesUpperSecondAndUp = percentagesProfile[1];
+		this.percentageOfGradesLowerSecondAndUp = percentagesProfile[2];
+		this.percentageOfGradesThird = percentagesProfile[3];
 	}
 
 	// Gets profile 5 or 6 depending on the given number of grades in the parameter
@@ -63,17 +73,7 @@ public class Profile {
 		return profilePercentages;
 	}
 
-	//Initialises the percentages of each grade attained by this profile.
-	private void initialiseProfileGradePercentages() {
-		double[] percentagesProfile = getProfileGradePercentages();
-		// evaluates profile 6's grades' percentages as a decimal (i.e. 0.50)
-		this.percentageOfGradesFirst = percentagesProfile[0];
-		this.percentageOfGradesUpperSecondAndUp = percentagesProfile[1];
-		this.percentageOfGradesLowerSecondAndUp = percentagesProfile[2];
-		this.percentageOfGradesThird = percentagesProfile[3];
-	}
-
-	//Classify profile depending on number of grade classifications achieved
+	//Classify profile depending on percentage of grades achieved within a certain range. 50% of grades 1-4 is First, 1-8 UpperSecond. 1-12 LowerSecond.
 	public Classification classify() {
 		if (!isClear()) //ensures discretion is required for those with too many Thirds and 50% Firsts or UpperSeconds
 			return Classification.Discretion;
@@ -89,9 +89,8 @@ public class Profile {
 
 	//Returns false for First or UpperSecond grades that have more than 25% Third grades.
 	public boolean isClear() {
-		if ((percentageOfGradesFirst >= classifyingPercentage && percentageOfGradesThird > discretionPercentage)
-				|| (percentageOfGradesUpperSecondAndUp >= classifyingPercentage
-						&& percentageOfGradesThird > discretionPercentage)) 
+		if ( (percentageOfGradesFirst >= classifyingPercentage && percentageOfGradesThird > discretionPercentage)
+				|| (percentageOfGradesUpperSecondAndUp >= classifyingPercentage && percentageOfGradesThird > discretionPercentage) ) 
 			return false;
 		else
 			return true;

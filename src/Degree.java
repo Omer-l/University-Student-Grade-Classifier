@@ -8,16 +8,15 @@ public class Degree {
 	private final Profile level6Profile;
 
 	public Degree(List<Grade> year2, List<Grade> year3) {
-		if (year2 == null || year3 == null || year2.size() != numberOfGradesYear2 || year3.size() != numberOfGradesYear3
-				|| fail(year2, year3))
+		if (year2 == null || year3 == null || year2.size() != numberOfGradesYear2 || year3.size() != numberOfGradesYear3)
 			throw new IllegalArgumentException();
 		else {
 			year2.addAll(year3);
-			level5Profile = new Profile(year2);
-			level6Profile = new Profile(year3);
+			this.level5Profile = new Profile(year2);
+			this.level6Profile = new Profile(year3);
 		}
 	}
-
+	
 	/**
 	 * Evaluates a list of grades for any grade 17-20.
 	 * 
