@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import university.Grade;
 
@@ -34,7 +36,8 @@ class GradeTest {
 		assertEquals(expected, actual);
 	}
 	
-	@Test
+	@ParameterizedTest
+	@ValueSource(ints = {1, 2, 3, 4})
 	void testClassifyFirst() {
 		Grade grade = new Grade(1);
 		
