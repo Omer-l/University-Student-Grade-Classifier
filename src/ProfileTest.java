@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class ProfileTest {
 
 	@Test
-	void testInitialiseProfileEmptyListArgument() {
+	void testConstructorEmptyListArgument() {
 		List<Grade> emptyListOfGrades = new ArrayList<>();
 		
 		assertThrows(IllegalArgumentException.class, () -> {
@@ -19,7 +19,7 @@ class ProfileTest {
 	}
 	
 	@Test
-	void testInitialiseProfileNullArgument() {
+	void testConstructorNullArgument() {
 		
 		assertThrows(IllegalArgumentException.class, () -> {
 			Profile profile = new Profile(null);
@@ -27,7 +27,7 @@ class ProfileTest {
 	}
 
 	@Test
-	void testInitialiseProfileFailArgument() {
+	void testConstructorOneOrMoreFailArgument() {
 		List<Grade> listOfGrades = new ArrayList<>();
 		listOfGrades.add(new Grade(1)); //grade 1
 		listOfGrades.add(new Grade(1)); //grade 2
@@ -91,7 +91,7 @@ class ProfileTest {
 	}
 
 	@Test
-	void testProfileFirst() {
+	void testProfileClearFirst() {
 		List<Grade> listOfGrades = new ArrayList<>();
 		listOfGrades.add(new Grade(1)); //grade 1, First
 		listOfGrades.add(new Grade(1)); //grade 2, First
@@ -111,16 +111,16 @@ class ProfileTest {
 	}
 
 	@Test
-	void testProfileUpperSecond() {
+	void testProfileClearUpperSecond() {
 		List<Grade> listOfGrades = new ArrayList<>();
-		listOfGrades.add(new Grade(5)); //grade 1
-		listOfGrades.add(new Grade(6)); //grade 2
-		listOfGrades.add(new Grade(7)); //grade 3
-		listOfGrades.add(new Grade(8)); //grade 4
-		listOfGrades.add(new Grade(1)); //grade 5
-		listOfGrades.add(new Grade(3)); //grade 6
-		listOfGrades.add(new Grade(4)); //grade 7
-		listOfGrades.add(new Grade(6)); //grade 8
+		listOfGrades.add(new Grade(5)); //grade 1, UpperSecond
+		listOfGrades.add(new Grade(6)); //grade 2, UpperSecond
+		listOfGrades.add(new Grade(7)); //grade 3, UpperSecond
+		listOfGrades.add(new Grade(8)); //grade 4, UpperSecond
+		listOfGrades.add(new Grade(1)); //grade 5, First
+		listOfGrades.add(new Grade(3)); //grade 6, First
+		listOfGrades.add(new Grade(4)); //grade 7, First
+		listOfGrades.add(new Grade(6)); //grade 8, UpperSecond
 		
 		Profile profile = new Profile(listOfGrades);
 		
@@ -133,14 +133,14 @@ class ProfileTest {
 	@Test
 	void testProfileLowerSecond() {
 		List<Grade> listOfGrades = new ArrayList<>();
-		listOfGrades.add(new Grade(9)); //grade 1
-		listOfGrades.add(Grade.fromPercentage(50)); //grade 2: 12
-		listOfGrades.add(Grade.fromPercentage(52)); //grade 3: 11
-		listOfGrades.add(Grade.fromPercentage(55)); //grade 4: 10
-		listOfGrades.add(new Grade(1)); //grade 5
-		listOfGrades.add(new Grade(15)); //grade 6
-		listOfGrades.add(new Grade(4)); //grade 7
-		listOfGrades.add(new Grade(6)); //grade 8
+		listOfGrades.add(new Grade(9)); //grade 1, Lower Second
+		listOfGrades.add(Grade.fromPercentage(50)); //grade 2: 12, Lower Second
+		listOfGrades.add(Grade.fromPercentage(52)); //grade 3: 11, Lower Second
+		listOfGrades.add(Grade.fromPercentage(55)); //grade 4: 10, Lower Second
+		listOfGrades.add(new Grade(1)); //grade 5, First
+		listOfGrades.add(new Grade(15)); //grade 6, Third
+		listOfGrades.add(new Grade(4)); //grade 7, First
+		listOfGrades.add(new Grade(6)); //grade 8, UpperSecond
 		
 		Profile profile = new Profile(listOfGrades);
 		
@@ -153,14 +153,14 @@ class ProfileTest {
 	@Test
 	void testProfileThird() {
 		List<Grade> listOfGrades = new ArrayList<>();
-		listOfGrades.add(new Grade(13)); //grade 1
-		listOfGrades.add(new Grade(14)); //grade 2
-		listOfGrades.add(new Grade(15)); //grade 3
-		listOfGrades.add(new Grade(12)); //grade 4
-		listOfGrades.add(new Grade(1)); //grade 5
-		listOfGrades.add(new Grade(3)); //grade 6
-		listOfGrades.add(new Grade(14)); //grade 7
-		listOfGrades.add(new Grade(16)); //grade 8
+		listOfGrades.add(new Grade(13)); //grade 1, Third
+		listOfGrades.add(new Grade(14)); //grade 2, Third
+		listOfGrades.add(new Grade(15)); //grade 3, Third
+		listOfGrades.add(new Grade(12)); //grade 4, Lower Second
+		listOfGrades.add(new Grade(1)); //grade 5, First
+		listOfGrades.add(new Grade(3)); //grade 6, First
+		listOfGrades.add(new Grade(14)); //grade 7, Third
+		listOfGrades.add(new Grade(16)); //grade 8, Third
 		
 		Profile profile = new Profile(listOfGrades);
 		

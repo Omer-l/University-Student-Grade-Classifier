@@ -7,14 +7,14 @@ import org.junit.jupiter.api.function.Executable;
 class GradeTest {
 
 	@Test
-	void testBelowInput() {
+	void testBelowConstructorInput() {
 		assertThrows(IllegalArgumentException.class, () -> {
 			Grade grade = new Grade(21);
 		});
 	}
 
 	@Test
-	void testAboveInput() {
+	void testAboveConstructorInput() {
 		assertThrows(IllegalArgumentException.class, () -> {
 			Grade grade = new Grade(0);
 		});
@@ -22,9 +22,10 @@ class GradeTest {
 	
 	@Test
 	void testGetPoints() {
-		Grade grade = new Grade(1);
-		
 		int expected = 1;
+		
+		Grade grade = new Grade(expected);
+		
 		int actual = grade.getPoints();
 		
 		assertEquals(expected, actual);
@@ -95,7 +96,7 @@ class GradeTest {
 	}
 	
 	@Test
-	void testGrade20() {
+	void testFromPercentageForGrade20() {
 		int percentageReceived = -1;
 		
 		int expected = 20;
@@ -105,7 +106,7 @@ class GradeTest {
 	}
 	
 	@Test
-	void testGrade19() {
+	void testFromPercentageForGrade19() {
 		int percentageReceived = 29;
 		
 		int expected = 19;
@@ -115,7 +116,7 @@ class GradeTest {
 	}
 	
 	@Test
-	void testGrade18() {
+	void testFromPercentageForGrade18() {
 		int percentageReceived = 34;
 		
 		int expected = 18;
@@ -125,7 +126,7 @@ class GradeTest {
 	}
 	
 	@Test
-	void testGrade17() {
+	void testFromPercentageForGrade17() {
 		int percentageReceived = 39;
 		
 		int expected = 17;
@@ -135,7 +136,7 @@ class GradeTest {
 	}
 	
 	@Test
-	void testGrade16() {
+	void testFromPercentageForGrade16() {
 		int percentageReceived = 41;
 		
 		int expected = 16;
@@ -145,7 +146,7 @@ class GradeTest {
 	}
 	
 	@Test
-	void testGrade15() {
+	void testFromPercentageForGrade15() {
 		int percentageReceived = 44;
 		
 		int expected = 15;
@@ -155,7 +156,7 @@ class GradeTest {
 	}
 	
 	@Test
-	void testGrade14() {
+	void testFromPercentageForGrade14() {
 		int percentageReceived = 46;
 		
 		int expected = 14;
@@ -165,7 +166,7 @@ class GradeTest {
 	}
 	
 	@Test
-	void testGrade13() {
+	void testFromPercentageForGrade13() {
 		int percentageReceived = 49;
 		
 		int expected = 13;
@@ -175,7 +176,7 @@ class GradeTest {
 	}
 	
 	@Test
-	void testGrade12() {
+	void testFromPercentageForGrade12() {
 		int percentageReceived = 51;
 		
 		int expected = 12;
@@ -185,7 +186,7 @@ class GradeTest {
 	}
 	
 	@Test
-	void testGrade11() {
+	void testFromPercentageForGrade11() {
 		int percentageReceived = 54;
 		
 		int expected = 11;
@@ -195,7 +196,7 @@ class GradeTest {
 	}
 	
 	@Test
-	void testGrade10() {
+	void testFromPercentageForGrade10() {
 		int percentageReceived = 56;
 		
 		int expected = 10;
@@ -205,7 +206,7 @@ class GradeTest {
 	}
 	
 	@Test
-	void testGrade9() {
+	void testFromPercentageForGrade9() {
 		int percentageReceived = 58;
 		
 		int expected = 9;
@@ -215,7 +216,7 @@ class GradeTest {
 	}
 	
 	@Test
-	void testGrade8() {
+	void testFromPercentageForGrade8() {
 		int percentageReceived = 61;
 		
 		int expected = 8;
@@ -225,7 +226,7 @@ class GradeTest {
 	}
 	
 	@Test
-	void testGrade7() {
+	void testFromPercentageForGrade7() {
 		int percentageReceived = 63;
 		
 		int expected = 7;
@@ -235,7 +236,7 @@ class GradeTest {
 	}
 	
 	@Test
-	void testGrade6() {
+	void testFromPercentageForGrade6() {
 		int percentageReceived = 66;
 		
 		int expected = 6;
@@ -245,7 +246,7 @@ class GradeTest {
 	}
 	
 	@Test
-	void testGrade5() {
+	void testFromPercentageForGrade5() {
 		int percentageReceived = 68;
 		
 		int expected = 5;
@@ -255,7 +256,7 @@ class GradeTest {
 	}
 	
 	@Test
-	void testGrade4() {
+	void testFromPercentageForGrade4() {
 		int percentageReceived = 71;
 		
 		int expected = 4;
@@ -265,7 +266,7 @@ class GradeTest {
 	}
 	
 	@Test
-	void testGrade3() {
+	void testFromPercentageForGrade3() {
 		int percentageReceived = 74;
 		
 		int expected = 3;
@@ -275,7 +276,7 @@ class GradeTest {
 	}
 	
 	@Test
-	void testGrade2() {
+	void testFromPercentageForGrade2() {
 		int percentageReceived = 77;
 		
 		int expected = 2;
@@ -285,7 +286,7 @@ class GradeTest {
 	}
 	
 	@Test
-	void testGrade1() {
+	void testFromPercentageForGrade1() {
 		int percentageReceived = 89;
 		
 		int expected = 1;

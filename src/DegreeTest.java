@@ -9,19 +9,19 @@ import org.junit.jupiter.api.Test;
 
 class DegreeTest {
 	
-	//Grades are fine here but in year 3, there is 1 less grade
+	//Grades are fine in this method but in year 3, there is 1 less grade
 	@Test
-	void testInitialiseDegreeLessGrades() {
+	void testConstructorLessGrades() {
 		List<Grade> year2Grades = new ArrayList<>(); 
-		year2Grades.add(Grade.fromPercentage(82)); //grade 1: 1
-		year2Grades.add(Grade.fromPercentage(89)); //grade 2: 1
-		year2Grades.add(Grade.fromPercentage(45)); //grade 3: 14
-		year2Grades.add(Grade.fromPercentage(51)); //grade 4: 12
+		year2Grades.add(Grade.fromPercentage(82)); //grade 1: 1, First
+		year2Grades.add(Grade.fromPercentage(89)); //grade 2: 1, First
+		year2Grades.add(Grade.fromPercentage(45)); //grade 3: 14, Third
+		year2Grades.add(Grade.fromPercentage(51)); //grade 4: 12, Third
 		
 		
 		List<Grade> year3Grades = new ArrayList<>();
-		year3Grades.add(Grade.fromPercentage(74)); //grade 1: 3
-		year3Grades.add(Grade.fromPercentage(71)); //grade 2: 4
+		year3Grades.add(Grade.fromPercentage(74)); //grade 1: 3, First
+		year3Grades.add(Grade.fromPercentage(71)); //grade 2: 4, First
 		year3Grades.add(new Grade(4)); //grade 4
 		
 		assertThrows(IllegalArgumentException.class, () -> {
@@ -30,12 +30,12 @@ class DegreeTest {
 	}
 	
 	@Test
-	void testInitialiseDegreeNullProfile() {
+	void testConstructorNullProfile() {
 		List<Grade> year2Grades = new ArrayList<>();
-		year2Grades.add(new Grade(1)); //grade 1
-		year2Grades.add(Grade.fromPercentage(76)); //grade 2: 2
-		year2Grades.add(new Grade(3)); //grade 3
-		year2Grades.add(Grade.fromPercentage(48)); //grade 3: 13
+		year2Grades.add(new Grade(1)); //grade 1, First
+		year2Grades.add(Grade.fromPercentage(76)); //grade 2: 2, First
+		year2Grades.add(new Grade(3)); //grade 3, First
+		year2Grades.add(Grade.fromPercentage(48)); //grade 3: 13, Third
 		
 		assertThrows(IllegalArgumentException.class, () -> {
 			year2Grades.add(new Grade(21)); //grade shouldn't be added
@@ -51,29 +51,29 @@ class DegreeTest {
 	}
 
 	@Test
-	void testInitialiseDegreeFail() {
+	void testConstructorOneOrMoreFail() {
 		List<Grade> year2Grades = new ArrayList<>();
-		year2Grades.add(Grade.fromPercentage(37)); //grade 1: 17
-		year2Grades.add(new Grade(3)); //grade 2
-		year2Grades.add(new Grade(2)); //grade 3
-		year2Grades.add(new Grade(1)); //grade 4
+		year2Grades.add(Grade.fromPercentage(37)); //grade 1: 17, Fail
+		year2Grades.add(new Grade(3)); //grade 2, First
+		year2Grades.add(new Grade(2)); //grade 3, First
+		year2Grades.add(new Grade(1)); //grade 4, First
 		
 		
 		List<Grade> year3Grades = new ArrayList<>();
 		year3Grades.add(new Grade(1)); //grade 1
 		
-		assertThrows(IllegalArgumentException.class, () -> { 
+		assertThrows(IllegalArgumentException.class, () -> {  //grade shouldn't even be added
 			year3Grades.add(Grade.fromPercentage(-3));
 		});
 	
-		assertThrows(IllegalArgumentException.class, () -> { 
+		assertThrows(IllegalArgumentException.class, () -> {  //grade shouldn't even be added
 			year3Grades.add(Grade.fromPercentage(104));
 		});
 		
 		
-		year3Grades.add(Grade.fromPercentage(19)); //grade 2: 19
-		year3Grades.add(Grade.fromPercentage(-1)); //grade 3: 20
-		year3Grades.add(Grade.fromPercentage(32)); //grade 4: 18
+		year3Grades.add(Grade.fromPercentage(19)); //grade 2: 19, Fail
+		year3Grades.add(Grade.fromPercentage(-1)); //grade 3: 20, Fail
+		year3Grades.add(Grade.fromPercentage(32)); //grade 4: 18, Fail
 		
 		assertThrows(IllegalArgumentException.class, () -> {
 			Degree Degree = new Degree(year2Grades, year3Grades);
@@ -83,17 +83,17 @@ class DegreeTest {
 	@Test
 	void testClassifyBothProfilesSame() {
 		List<Grade> year2Grades = new ArrayList<>();
-		year2Grades.add(new Grade(1)); //grade 1
-		year2Grades.add(Grade.fromPercentage(68)); //grade 2: 5
-		year2Grades.add(Grade.fromPercentage(63)); //grade 3: 7
-		year2Grades.add(new Grade(1)); //grade 4
+		year2Grades.add(new Grade(1)); //grade 1, First
+		year2Grades.add(Grade.fromPercentage(68)); //grade 2: 5, UpperSecond
+		year2Grades.add(Grade.fromPercentage(63)); //grade 3: 7, UpperSecond
+		year2Grades.add(new Grade(1)); //grade 4, First
 		
 		
 		List<Grade> year3Grades = new ArrayList<>();
-		year3Grades.add(new Grade(1)); //grade 1
-		year3Grades.add(new Grade(1)); //grade 2
-		year3Grades.add(Grade.fromPercentage(43)); //grade 3: 15
-		year3Grades.add(new Grade(1)); //grade 4
+		year3Grades.add(new Grade(1)); //grade 1, First
+		year3Grades.add(new Grade(1)); //grade 2, First
+		year3Grades.add(Grade.fromPercentage(43)); //grade 3: 15, Third
+		year3Grades.add(new Grade(1)); //grade 4, First
 		
 		Degree degree = new Degree(year2Grades, year3Grades);
 		
@@ -104,19 +104,19 @@ class DegreeTest {
 	}
 	
 	@Test
-	void testClassifyLevel6Higher() {
+	void testClassifyLevel6HigherClassificationBy1() {
 		List<Grade> year2Grades = new ArrayList<>(); //LowerSecond
-		year2Grades.add(new Grade(14)); //grade 1
-		year2Grades.add(new Grade(15)); //grade 2
-		year2Grades.add(Grade.fromPercentage(40)); //grade 3: 16
-		year2Grades.add(Grade.fromPercentage(48)); //grade 4: 13
+		year2Grades.add(new Grade(14)); //grade 1, Third
+		year2Grades.add(new Grade(15)); //grade 2, Third
+		year2Grades.add(Grade.fromPercentage(40)); //grade 3: 16, Third
+		year2Grades.add(Grade.fromPercentage(48)); //grade 4: 13, Third
 		
 		
 		List<Grade> year3Grades = new ArrayList<>(); //Third
-		year3Grades.add(Grade.fromPercentage(45)); //grade 1: 15
-		year3Grades.add(Grade.fromPercentage(55)); //grade 2: 10
-		year3Grades.add(Grade.fromPercentage(53)); //grade 3: 11
-		year3Grades.add(Grade.fromPercentage(51)); //grade 4: 12
+		year3Grades.add(Grade.fromPercentage(45)); //grade 1: 15, Third
+		year3Grades.add(Grade.fromPercentage(55)); //grade 2: 10, UpperSecond
+		year3Grades.add(Grade.fromPercentage(53)); //grade 3: 11, UpperSecond
+		year3Grades.add(Grade.fromPercentage(51)); //grade 4: 12, UpperSecond
 		
 		Degree degree = new Degree(year2Grades, year3Grades);
 		
@@ -127,18 +127,18 @@ class DegreeTest {
 	}
 	
 	@Test
-	void testClassifyLevel5Higher() {
+	void testClassifyLevel5HigherClassificationBy1() {
 		List<Grade> year2Grades = new ArrayList<>(); //First
-		year2Grades.add(new Grade(3)); //grade 1
-		year2Grades.add(Grade.fromPercentage(58)); //grade 2: 9
-		year2Grades.add(new Grade(4)); //grade 3
-		year2Grades.add(new Grade(1)); //grade 4
+		year2Grades.add(new Grade(3)); //grade 1, First
+		year2Grades.add(Grade.fromPercentage(58)); //grade 2: 9, UpperSecond
+		year2Grades.add(new Grade(4)); //grade 3, First
+		year2Grades.add(new Grade(1)); //grade 4, First
 		
 		
 		List<Grade> year3Grades = new ArrayList<>(); //UpperSecond
-		year3Grades.add(new Grade(1)); //grade 1
-		year3Grades.add(Grade.fromPercentage(60)); //grade 2: 8
-		year3Grades.add(Grade.fromPercentage(48)); //grade 3: 13
+		year3Grades.add(new Grade(1)); //grade 1, First
+		year3Grades.add(Grade.fromPercentage(60)); //grade 2: 8, UpperSecond
+		year3Grades.add(Grade.fromPercentage(48)); //grade 3: 13, Third
 		year3Grades.add(new Grade(5)); //grade 4
 		
 		Degree degree = new Degree(year2Grades, year3Grades);
@@ -150,19 +150,19 @@ class DegreeTest {
 	}
 	
 	@Test
-	void testClassifyDiscretionOver25Third() {
+	void testClassifyDiscretionOver25PercentThird() {
 		List<Grade> year2Grades = new ArrayList<>(); //First but with Discretion
-		year2Grades.add(new Grade(3)); //grade 1
-		year2Grades.add(new Grade(15)); //grade 2
-		year2Grades.add(new Grade(4)); //grade 3
-		year2Grades.add(new Grade(16)); //grade 4
+		year2Grades.add(new Grade(3)); //grade 1, First
+		year2Grades.add(new Grade(15)); //grade 2, Third
+		year2Grades.add(new Grade(4)); //grade 3, First
+		year2Grades.add(new Grade(16)); //grade 4, Third
 		
 		
 		List<Grade> year3Grades = new ArrayList<>(); //UpperSecond
-		year3Grades.add(Grade.fromPercentage(55)); //grade 1: 10
-		year3Grades.add(Grade.fromPercentage(66)); //grade 2: 6
-		year3Grades.add(new Grade(14)); //grade 3
-		year3Grades.add(new Grade(1)); //grade 4
+		year3Grades.add(Grade.fromPercentage(55)); //grade 1: 10, LowerSecond
+		year3Grades.add(Grade.fromPercentage(66)); //grade 2: 6, UpperSecond
+		year3Grades.add(new Grade(14)); //grade 3, Third
+		year3Grades.add(new Grade(1)); //grade 4, First
 		
 		Degree degree = new Degree(year2Grades, year3Grades);
 		
@@ -173,19 +173,19 @@ class DegreeTest {
 	}
 	
 	@Test
-	void testClassifyDiscretionTwoGradesApart() {
+	void testClassifyDiscretionHigherClassificationBy2() {
 		List<Grade> year2Grades = new ArrayList<>(); //First
-		year2Grades.add(new Grade(3)); //grade 1
-		year2Grades.add(new Grade(1)); //grade 2
-		year2Grades.add(new Grade(4)); //grade 3
-		year2Grades.add(new Grade(4)); //grade 4
+		year2Grades.add(new Grade(3)); //grade 1, First
+		year2Grades.add(new Grade(1)); //grade 2, First
+		year2Grades.add(new Grade(4)); //grade 3, First
+		year2Grades.add(new Grade(4)); //grade , First
 		
 		
 		List<Grade> year3Grades = new ArrayList<>(); //LowerSecond
-		year3Grades.add(new Grade(9)); //grade 1
-		year3Grades.add(new Grade(12)); //grade 2
-		year3Grades.add(new Grade(14)); //grade 3
-		year3Grades.add(new Grade(15)); //grade 4
+		year3Grades.add(new Grade(9)); //grade 1, LowerSecond
+		year3Grades.add(new Grade(12)); //grade 2, LowerSecond
+		year3Grades.add(new Grade(14)); //grade 3, LowerSecond
+		year3Grades.add(new Grade(15)); //grade 4, LowerSecond
 		
 		Degree degree = new Degree(year2Grades, year3Grades);
 		
