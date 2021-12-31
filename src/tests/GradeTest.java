@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
-import middlesexUniversity.Grade;
+import university.Grade;
 
 class GradeTest {
 

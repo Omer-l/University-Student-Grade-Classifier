@@ -1,4 +1,4 @@
-package middlesexUniversity;
+package university;
 // Do not change anything in this file.
 
 public enum Classification {

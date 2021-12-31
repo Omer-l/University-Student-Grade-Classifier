@@ -1,4 +1,4 @@
-package middlesexUniversity;
+package university;
 import java.util.List;
 
 /**

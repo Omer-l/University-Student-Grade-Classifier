@@ -8,9 +8,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import middlesexUniversity.Classification;
-import middlesexUniversity.Grade;
-import middlesexUniversity.Profile;
+import university.Classification;
+import university.Grade;
+import university.Profile;
 
 class ProfileTest {
 

@@ -1,4 +1,4 @@
-package middlesexUniversity;
+package university;
 /**
  * This class contains the necessary functions to calculate a grade given either points, or a
  * percentage. These are necessary for giving an overall profile and degree classification.

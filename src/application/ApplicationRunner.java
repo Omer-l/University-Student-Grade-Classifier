@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import middlesexUniversity.*;
+import university.*;
 
 /**
  * This class runs the application.
@@ -49,11 +49,30 @@ public class ApplicationRunner {
 		List<Grade> grades = new ArrayList<>(numberOfGrades);
 
 		for (int gradeIndex = 0; gradeIndex < 4; gradeIndex++) {
-			System.out.print("Enter YEAR " + yearNumber + " grade " + (gradeIndex + 1) + ": ");
-			grades.add(new Grade(input.nextInt()));
+			System.out.print("Enter YEAR " + yearNumber + " grade " + (gradeIndex + 1) + " (add a % at the end if the grade is a percentage): ");
+			grades.add(parseUserInput(input.nextLine()));
 			System.out.print("\n");
 		}
 
 		return grades;
+	}
+	
+	//Gets grade, given a user input
+	private static Grade parseUserInput(String userInput) {
+		try {
+			userInput = userInput.trim();
+			
+			if(userInput.charAt(userInput.length() - 1) == '%') {
+				int gradeInt = Integer.parseInt(userInput.substring(0, userInput.indexOf('%')));
+				return Grade.fromPercentage(gradeInt);
+			} else {
+				int gradeInt = Integer.parseInt(userInput);
+				return new Grade(gradeInt);
+			}
+		} catch(Exception e) {
+			ApplicationRunner.main(null);
+		}
+		
+		return null;
 	}
 }
