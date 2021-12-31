@@ -1,3 +1,10 @@
+/**
+ * This class contains the necessary functions to calculate a grade given either points, or a
+ * percentage. These are necessary for giving an overall profile and degree classification.
+ * @author Omer Kacar
+ * @see Profile.java
+ * @see Degree.java
+ */
 public class Grade {
 	private final int points;
 
@@ -19,14 +26,13 @@ public class Grade {
 	private final int lowerSecondGradeLimit = 12;
 	private final int thirdGradeLimit = 16;
 	
+	//Returns the classification of a grade depending on the points
 	public Classification classify() {
-		int points = getPoints();
-		
 		if(points <= firstGradeLimit)
 			return Classification.First;
 		else if(points <= upperSecondGradeLimit)
 			return Classification.UpperSecond;
-		else if(points <= lowerSecondGradeLimit)
+		else if(getPoints() <= lowerSecondGradeLimit)
 			return Classification.LowerSecond;
 		else if(points <= thirdGradeLimit)
 			return Classification.Third;
@@ -34,6 +40,7 @@ public class Grade {
 			return Classification.Fail;
 	}
 	
+	//Calculates the grade, given a percentage -1 to 100
 	public static Grade fromPercentage(int g) throws IllegalArgumentException {
 		if(g < -1 || g > 100)
 			throw new IllegalArgumentException();

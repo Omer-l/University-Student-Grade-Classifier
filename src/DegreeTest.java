@@ -9,9 +9,10 @@ import org.junit.jupiter.api.Test;
 
 class DegreeTest {
 	
+	//Grades are fine here but in year 3, there is 1 less grade
 	@Test
 	void testInitialiseDegreeLessGrades() {
-		List<Grade> year2Grades = new ArrayList<>();
+		List<Grade> year2Grades = new ArrayList<>(); 
 		year2Grades.add(Grade.fromPercentage(82)); //grade 1: 1
 		year2Grades.add(Grade.fromPercentage(89)); //grade 2: 1
 		year2Grades.add(Grade.fromPercentage(45)); //grade 3: 14
@@ -21,7 +22,7 @@ class DegreeTest {
 		List<Grade> year3Grades = new ArrayList<>();
 		year3Grades.add(Grade.fromPercentage(74)); //grade 1: 3
 		year3Grades.add(Grade.fromPercentage(71)); //grade 2: 4
-		year3Grades.add(Grade.fromPercentage(48)); //grade 3: 13
+		year3Grades.add(new Grade(4)); //grade 4
 		
 		assertThrows(IllegalArgumentException.class, () -> {
 			Degree Degree = new Degree(year2Grades, year3Grades);
@@ -34,7 +35,7 @@ class DegreeTest {
 		year2Grades.add(new Grade(1)); //grade 1
 		year2Grades.add(Grade.fromPercentage(76)); //grade 2: 2
 		year2Grades.add(new Grade(3)); //grade 3
-		year2Grades.add(new Grade(4)); //grade 4
+		year2Grades.add(Grade.fromPercentage(48)); //grade 3: 13
 		
 		assertThrows(IllegalArgumentException.class, () -> {
 			year2Grades.add(new Grade(21)); //grade shouldn't be added

@@ -1,5 +1,12 @@
 import java.util.List;
 
+/**
+ * Given two profiles (Level 5 and Level 6), this class contains the necessary functions to give a 
+ * degree classification for the student.
+ * @author Omer Kacar     
+ * @see Profile.java
+ * @see Grade.java
+ */
 public class Degree {
 	// Your additions/changes below this line
 	private final int numberOfGradesYear2 = 4;
@@ -19,7 +26,7 @@ public class Degree {
 
 	
 	/**
-	 * Evaluates a list of grades for any grade 17-20.
+	 * Evaluates a list of grades and for any grade 17-20, false will be returned.
 	 * 
 	 * @param year2 is the list of grades for year 2
 	 * @param year3 is the list of grades for year 3
@@ -37,6 +44,8 @@ public class Degree {
 		}
 		return false;
 	}
+	
+	//classifies the degree depending on the class of the two profiles.
 	public Classification classify() {
 		Integer level5Classification = level5Profile.classify().ordinal();
 		Integer level6Classification = level6Profile.classify().ordinal();

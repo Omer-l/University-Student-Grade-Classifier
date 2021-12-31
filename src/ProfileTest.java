@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class ProfileTest {
 
 	@Test
-	void testInitialiseProfileEmptyList() {
+	void testInitialiseProfileEmptyListArgument() {
 		List<Grade> emptyListOfGrades = new ArrayList<>();
 		
 		assertThrows(IllegalArgumentException.class, () -> {
@@ -19,7 +19,7 @@ class ProfileTest {
 	}
 	
 	@Test
-	void testInitialiseProfileNull() {
+	void testInitialiseProfileNullArgument() {
 		
 		assertThrows(IllegalArgumentException.class, () -> {
 			Profile profile = new Profile(null);
@@ -27,15 +27,15 @@ class ProfileTest {
 	}
 
 	@Test
-	void testInitialiseProfileFail() {
+	void testInitialiseProfileFailArgument() {
 		List<Grade> listOfGrades = new ArrayList<>();
 		listOfGrades.add(new Grade(1)); //grade 1
 		listOfGrades.add(new Grade(1)); //grade 2
 		listOfGrades.add(new Grade(14)); //grade 3
-		listOfGrades.add(Grade.fromPercentage(-1)); //grade 4: 20
-		listOfGrades.add(Grade.fromPercentage(25)); //grade 5: 19
-		listOfGrades.add(Grade.fromPercentage(31)); //grade 6: 18
-		listOfGrades.add(Grade.fromPercentage(37)); //grade 7: 17
+		listOfGrades.add(Grade.fromPercentage(-1)); //grade 4: 20 //FAIL
+		listOfGrades.add(Grade.fromPercentage(25)); //grade 5: 19 //FAIL
+		listOfGrades.add(Grade.fromPercentage(31)); //grade 6: 18 //FAIL
+		listOfGrades.add(Grade.fromPercentage(37)); //grade 7: 17 //FAIL
 
 		assertThrows(IllegalArgumentException.class, () -> { //should not add to list of grades
 			listOfGrades.add(Grade.fromPercentage(-5));
@@ -57,10 +57,10 @@ class ProfileTest {
 	@Test
 	void testProfileNotClearFirst() {
 		List<Grade> listOfGrades = new ArrayList<>();
-		listOfGrades.add(Grade.fromPercentage(87)); //grade 1: 1
-		listOfGrades.add(Grade.fromPercentage(77)); //grade 2: 2
-		listOfGrades.add(Grade.fromPercentage(40)); //grade 3: 16
-		listOfGrades.add(Grade.fromPercentage(42)); //grade 4: 15
+		listOfGrades.add(Grade.fromPercentage(87)); //grade 1: 1, First
+		listOfGrades.add(Grade.fromPercentage(77)); //grade 2: 2, First
+		listOfGrades.add(Grade.fromPercentage(40)); //grade 3: 16, Third
+		listOfGrades.add(Grade.fromPercentage(42)); //grade 4: 15, Third
 		
 		Profile profile = new Profile(listOfGrades);
 		
@@ -73,14 +73,14 @@ class ProfileTest {
 	@Test
 	void testProfileNotClearUpperSecond() {
 		List<Grade> listOfGrades = new ArrayList<>();
-		listOfGrades.add(Grade.fromPercentage(68)); //grade 1: 5
-		listOfGrades.add(Grade.fromPercentage(65)); //grade 2: 6
-		listOfGrades.add(Grade.fromPercentage(63)); //grade 3: 7
-		listOfGrades.add(Grade.fromPercentage(60)); //grade 4: 8
-		listOfGrades.add(Grade.fromPercentage(58)); //grade 5: 9
-		listOfGrades.add(Grade.fromPercentage(48)); //grade 6: 13
-		listOfGrades.add(Grade.fromPercentage(45)); //grade 7: 14
-		listOfGrades.add(Grade.fromPercentage(43)); //grade 8: 15
+		listOfGrades.add(Grade.fromPercentage(68)); //grade 1: 5, UpperSecond
+		listOfGrades.add(Grade.fromPercentage(65)); //grade 2: 6, UpperSecond
+		listOfGrades.add(Grade.fromPercentage(63)); //grade 3: 7, UpperSecond
+		listOfGrades.add(Grade.fromPercentage(60)); //grade 4: 8, UpperSecond
+		listOfGrades.add(Grade.fromPercentage(58)); //grade 5: 9, UpperSecond
+		listOfGrades.add(Grade.fromPercentage(48)); //grade 6: 13, Third
+		listOfGrades.add(Grade.fromPercentage(45)); //grade 7: 14, Third
+		listOfGrades.add(Grade.fromPercentage(43)); //grade 8: 15, Third
 		
 		Profile profile = new Profile(listOfGrades);
 		
@@ -93,14 +93,14 @@ class ProfileTest {
 	@Test
 	void testProfileFirst() {
 		List<Grade> listOfGrades = new ArrayList<>();
-		listOfGrades.add(new Grade(1)); //grade 1
-		listOfGrades.add(new Grade(1)); //grade 2
-		listOfGrades.add(new Grade(1)); //grade 3
-		listOfGrades.add(Grade.fromPercentage(74)); //grade 4: 3
-		listOfGrades.add(Grade.fromPercentage(70)); //grade 5: 4
-		listOfGrades.add(new Grade(10)); //grade 6
-		listOfGrades.add(new Grade(10)); //grade 7
-		listOfGrades.add(new Grade(15)); //grade 8
+		listOfGrades.add(new Grade(1)); //grade 1, First
+		listOfGrades.add(new Grade(1)); //grade 2, First
+		listOfGrades.add(new Grade(1)); //grade 3, First
+		listOfGrades.add(Grade.fromPercentage(74)); //grade 4: 3, First
+		listOfGrades.add(Grade.fromPercentage(70)); //grade 5: 4, First
+		listOfGrades.add(new Grade(10)); //grade 6, Lower Second
+		listOfGrades.add(new Grade(10)); //grade 7, Lower Second
+		listOfGrades.add(new Grade(15)); //grade 8, Third
 		
 		Profile profile = new Profile(listOfGrades);
 		

@@ -1,5 +1,11 @@
 import java.util.List;
 
+/**
+ * This class consists of the necessary functions to calculate the overall percentages of the grades of a Profile.
+ * Also, there is a method that classifies the profile after the calculation of the percentages of the grades.
+ * @author Omer Kacar
+ * @see Grade.java
+ */
 public class Profile {
 	// Your additions/changes below this line
 	private List<Grade> grades;
@@ -40,7 +46,7 @@ public class Profile {
 		double[] profilePercentages = new double[4]; //percentage of each grade
 		int numberOfGradesInProfile = grades.size(); //how many grades? i.e. profile 5 has 8 grades.
 
-		// count grades
+		// counts grades
 		for (int gradeIndex = 0; gradeIndex < numberOfGradesInProfile; gradeIndex++) {
 			Grade grade = this.grades.get(gradeIndex);
 			Classification gradeClassification = grade.classify();
@@ -54,7 +60,8 @@ public class Profile {
 			else if (gradeClassification.toString() == "Third")
 				gradeCounter[3]++;
 		}
-		// calculate grade percentages overall
+		
+		// calculates grade percentages overall and initialies them.
 		this.percentageOfGradesFirst = (double) gradeCounter[0] / (double) numberOfGradesInProfile; // percentage of first class
 		this.percentageOfGradesUpperSecondAndUp = ((double) gradeCounter[1] / (double) numberOfGradesInProfile) + percentageOfGradesFirst; // percentage of upper second class and up
 		this.percentageOfGradesLowerSecondAndUp = ((double) gradeCounter[2] / (double) numberOfGradesInProfile)  + percentageOfGradesUpperSecondAndUp; // percentage of lower second class
@@ -66,14 +73,14 @@ public class Profile {
 	public Classification classify() {
 		if (!isClear()) //ensures discretion is required for those with too many Thirds and 50% Firsts or UpperSeconds
 			return Classification.Discretion;
-		else if (percentageOfGradesFirst >= classifyingPercentage)
+		else if (percentageOfGradesFirst >= classifyingPercentage) //Clear First
 			return Classification.First;
-		else if (percentageOfGradesUpperSecondAndUp >= classifyingPercentage)
+		else if (percentageOfGradesUpperSecondAndUp >= classifyingPercentage) //Clear Upper Second
 			return Classification.UpperSecond;
-		else if (percentageOfGradesLowerSecondAndUp >= classifyingPercentage)
+		else if (percentageOfGradesLowerSecondAndUp >= classifyingPercentage) //Lower Second
 			return Classification.LowerSecond;
 		else
-			return Classification.Third;
+			return Classification.Third; //Third
 	}
 
 	//Returns false for First or UpperSecond grades that have more than 25% Third grades.
