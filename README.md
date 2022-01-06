@@ -5,6 +5,8 @@
 
 <u><b>Utilised:</b></u> Java, JUnit, OOP, Testing and Verification methods <br> <br> <br>
 
+### Testing & Verification CST3130 Coursework 1, Third Year of Computer Science
+
   <b>A console interface is shown below, which was created solely for demonstration purposes.</b>
 
 ![Page 1](README_Images/consoleInterface.png "Page 1")
