@@ -68,9 +68,8 @@ class ProfileTest {
 		listOfGrades.add(Grade.fromPercentage(42)); //grade 4: 15, Third
 		
 		Profile profile = new Profile(listOfGrades);
-		
-		String expected = Classification.Discretion.toString();
-		String actual = profile.classify().toString();
+		boolean expected = false;
+		boolean actual = profile.isClear();
 	
 		assertEquals(expected, actual);
 	}
@@ -88,9 +87,8 @@ class ProfileTest {
 		listOfGrades.add(Grade.fromPercentage(43)); //grade 8: 15, Third
 		
 		Profile profile = new Profile(listOfGrades);
-		
-		String expected = Classification.Discretion.toString();
-		String actual = profile.classify().toString();
+		boolean expected = false;
+		boolean actual = profile.isClear();
 	
 		assertEquals(expected, actual);
 	}

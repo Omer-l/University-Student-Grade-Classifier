@@ -71,11 +71,9 @@ public class Profile {
 
 	//Classify profile depending on percentage of grades achieved within a certain range. 50% of grades 1-4 is First, 1-8 UpperSecond. 1-12 LowerSecond.
 	public Classification classify() {
-		if (!isClear()) //ensures discretion is required for those with too many Thirds and 50% Firsts or UpperSeconds
-			return Classification.Discretion;
-		else if (percentageOfGradesFirst >= classifyingPercentage) //Clear First
+		if (percentageOfGradesFirst >= classifyingPercentage) //First
 			return Classification.First;
-		else if (percentageOfGradesUpperSecondAndUp >= classifyingPercentage) //Clear Upper Second
+		else if (percentageOfGradesUpperSecondAndUp >= classifyingPercentage) //Upper Second
 			return Classification.UpperSecond;
 		else if (percentageOfGradesLowerSecondAndUp >= classifyingPercentage) //Lower Second
 			return Classification.LowerSecond;
