@@ -41,7 +41,7 @@ public class ApplicationRunner {
 
 	/**
 	 * Prompts user and initialises grades for given year
-	 * @param yearNumber		is year at university
+	 * @param yearNumber		is the year at university
 	 * @param numberOfGrades	is the number of grades student has at that year
 	 * @return					an array of grades student accomplished
 	 */
@@ -51,7 +51,6 @@ public class ApplicationRunner {
 		for (int gradeIndex = 0; gradeIndex < 4; gradeIndex++) {
 			System.out.print("Enter YEAR " + yearNumber + " grade " + (gradeIndex + 1) + " (add a % at the end if the grade is a percentage): ");
 			grades.add(parseUserInput(input.nextLine()));
-			System.out.print("\n");
 		}
 
 		return grades;

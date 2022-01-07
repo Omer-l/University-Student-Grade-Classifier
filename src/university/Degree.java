@@ -1,4 +1,5 @@
 package university;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +20,8 @@ public class Degree {
 		if (year2 == null || year3 == null || year2.size() != numberOfGradesYear2 || year3.size() != numberOfGradesYear3 || fail(year2, year3))
 			throw new IllegalArgumentException();
 		else {
-			year2.addAll(year3);
+			ArrayList<Grade> year2Copy = new ArrayList<>(year2);
+			year2Copy.addAll(year3);
 			this.level5Profile = new Profile(year2); //these instances will throw IllegalArgumentException if there is a fail grade.
 			this.level6Profile = new Profile(year3);
 		}

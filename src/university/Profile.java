@@ -58,7 +58,7 @@ public class Profile {
 				gradeCounter[1]++;
 			else if (gradeClassification.toString() == "LowerSecond")
 				gradeCounter[2]++;
-			else if (gradeClassification.toString() == "Third")
+			else
 				gradeCounter[3]++;
 		}
 		
@@ -67,7 +67,6 @@ public class Profile {
 		this.percentageOfGradesUpperSecondAndUp = ((double) gradeCounter[1] / (double) numberOfGradesInProfile) + percentageOfGradesFirst; // percentage of upper second class and up
 		this.percentageOfGradesLowerSecondAndUp = ((double) gradeCounter[2] / (double) numberOfGradesInProfile)  + percentageOfGradesUpperSecondAndUp; // percentage of lower second class
 		this.percentageOfGradesThird = (double) gradeCounter[3] / (double) numberOfGradesInProfile; // percentage of third class
-
 	}
 
 	//Classify profile depending on percentage of grades achieved within a certain range. 50% of grades 1-4 is First, 1-8 UpperSecond. 1-12 LowerSecond.
